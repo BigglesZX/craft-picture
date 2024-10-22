@@ -1,0 +1,26 @@
+{
+    "name": "biggleszx/craft-picture",
+    "description": "Picture element helper template for use with Craft CMS",
+    "version": "1.0.0",
+    "keywords": [
+        "twig",
+        "twig-bundle",
+        "composer",
+        "installer",
+        "bundle",
+        "craftcms"
+    ],
+    "homepage": "https://github.com/BigglesZX/craft-picture",
+    "type": "twig-bundle",
+    "support": {
+        "issues": "https://github.com/BigglesZX/craft-picture/issues",
+        "source": "https://github.com/BigglesZX/craft-picture",
+        "docs": "https://github.com/BigglesZX/craft-picture"
+    },
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {
+        "craftcms/cms": ">=5.0",
+        "twig/twig": ">=3"
+    }
+}

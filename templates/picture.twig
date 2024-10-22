@@ -1,0 +1,58 @@
+{% set className = className ?? '' %}
+{% set image = image ?? null %}
+{% set transform = transform ?? 'general' %}
+{% set sourceWidths = sourceWidths
+    ?? craft.app.config.custom.craftPictureSourceWidths
+    ?? ['2240', '1920', '1600', '1280', '960', '640', '320'] %}
+{% set media = media ?? [] %}
+{% set sizes = sizes ?? '100vw' %}
+{% set alt = alt ?? '' %}
+{% set loading = loading ?? 'eager' %}
+
+{% set intrinsicWidth = 0 + image.getWidth() %}
+{% set media = media|map(medium => {
+    media: medium.media,
+    transform: medium.transform|default(transform),
+    sourceWidths: medium.sourceWidths
+        |default(sourceWidths)
+        |filter(width => width <= intrinsicWidth)
+        |default([intrinsicWidth])
+        |map(width => width ~ 'w'),
+    sizes: media.sizes|default(sizes),
+}) %}
+{% set sourceWidths = sourceWidths
+    |filter(width => width <= intrinsicWidth)
+    |default([intrinsicWidth])
+    |map(width => width ~ 'w') %}
+
+<picture class="{{ className }}">
+    {% for medium in media %}
+        <source
+            srcset="{{ image.getSrcset(medium.sourceWidths,
+                        { transform: medium.transform, format: 'webp' }) }}"
+            sizes="{{ medium.sizes }}"
+            type="image/webp"
+            media="{{ medium.media }}"
+        >
+        <source
+            srcset="{{ image.getSrcset(medium.sourceWidths, medium.transform) }}"
+            sizes="{{ medium.sizes }}"
+            media="{{ medium.media }}"
+        >
+    {% endfor %}
+    <source
+        srcset="{{ image.getSrcset(sourceWidths,
+                    { transform: transform, format: 'webp' }) }}"
+        sizes="{{ sizes }}"
+        type="image/webp"
+    >
+    <img
+        srcset="{{ image.getSrcset(sourceWidths, transform) }}"
+        src="{{ image.getUrl(transform) }}"
+        sizes="{{ sizes }}"
+        width="{{ image.getWidth(transform) }}"
+        height="{{ image.getHeight(transform) }}"
+        alt="{{ alt }}"
+        loading="{{ loading }}"
+    >
+</picture>
