@@ -15,7 +15,7 @@ You should be prompted to give `allow-plugins` permission for that package.
 Add this package:
 
 ```shell
-$ composer require BigglesZX/craft-picture
+$ composer require biggleszx/craft-picture
 ```
 
 Install:
@@ -54,7 +54,7 @@ In the kitchen-sink example below:
 * An additional media source is defined for `768px` and above which uses a transform named `landscape`
 
 ```twig
-{% include 'vendor/BigglesZX/craft-picture/templates/picture.twig' with {
+{% include 'vendor/biggleszx/craft-picture/templates/picture.twig' with {
     className: 'my-image',
     image: image,
     transform: 'square',
