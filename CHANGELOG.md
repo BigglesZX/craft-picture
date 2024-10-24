@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## 1.0.2 - 2024-10-24
+
+### Fixed
+
+* Don't output WebP sources for SVG images
+
 ## 1.0.1 - 2024-10-22
 
 ### Changed

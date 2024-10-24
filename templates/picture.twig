@@ -27,25 +27,29 @@
 
 <picture class="{{ className }}">
     {% for medium in media %}
-        <source
-            srcset="{{ image.getSrcset(medium.sourceWidths,
-                        { transform: medium.transform, format: 'webp' }) }}"
-            sizes="{{ medium.sizes }}"
-            type="image/webp"
-            media="{{ medium.media }}"
-        >
+        {% if image.mimeType != 'image/svg+xml' %}
+            <source
+                srcset="{{ image.getSrcset(medium.sourceWidths,
+                            { transform: medium.transform, format: 'webp' }) }}"
+                sizes="{{ medium.sizes }}"
+                type="image/webp"
+                media="{{ medium.media }}"
+            >
+        {% endif %}
         <source
             srcset="{{ image.getSrcset(medium.sourceWidths, medium.transform) }}"
             sizes="{{ medium.sizes }}"
             media="{{ medium.media }}"
         >
     {% endfor %}
-    <source
-        srcset="{{ image.getSrcset(sourceWidths,
-                    { transform: transform, format: 'webp' }) }}"
-        sizes="{{ sizes }}"
-        type="image/webp"
-    >
+    {% if image.mimeType != 'image/svg+xml' %}
+        <source
+            srcset="{{ image.getSrcset(sourceWidths,
+                        { transform: transform, format: 'webp' }) }}"
+            sizes="{{ sizes }}"
+            type="image/webp"
+        >
+    {% endif %}
     <img
         srcset="{{ image.getSrcset(sourceWidths, transform) }}"
         src="{{ image.getUrl(transform) }}"

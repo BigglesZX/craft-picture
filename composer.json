@@ -1,7 +1,7 @@
 {
     "name": "biggleszx/craft-picture",
     "description": "Picture element helper template for use with Craft CMS",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "keywords": [
         "twig",
         "twig-bundle",
